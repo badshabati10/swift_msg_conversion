@@ -1,0 +1,33 @@
+<!--&lt;!&ndash; Vertical layout &ndash;&gt;-->
+<!--<ng-scrollbar style="height: calc(100vh - 88px)" visibility="hover">-->
+<!--  <div class="navbar-content">-->
+<!--    <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()" (mouseleave)="navMob()">-->
+<!--    <ng-container *ngFor="let menu of nav">-->
+<!--      <li>-->
+<!--        <a [attr.href]="'#'+menu.id" data-bs-toggle="collapse" class="nav-link px-0 align-middle">-->
+<!--          <i [className]="menu.icon"></i> <span class="ms-1 d-none d-sm-inline">{{menu.title}}</span> </a>-->
+<!--        <div *ngFor="let submenu of menu.children">-->
+<!--          <ul class="collapse show nav flex-column ms-4" [attr.id]="menu.id" data-bs-parent="#menu">-->
+<!--            <li class="w-100">-->
+<!--              <a href="#" class="nav-link px-0" (click)="onAdd(submenu)"> {{submenu.title}}</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ng-container>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</ng-scrollbar>-->
+
+
+<ng-scrollbar style="height: calc(100vh - 80px)" visibility="always">
+  <div class="navbar-content">
+    <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()">
+      <ng-container *ngFor="let item of nav">
+        <app-nav-group *ngIf="item.type == 'parent'" [item]="item"></app-nav-group>
+        <app-nav-collapse *ngIf="item.type == 'group'" [item]="item"></app-nav-collapse>
+        <app-nav-item *ngIf="item.type == 'component'" [item]="item"></app-nav-item>
+      </ng-container>
+    </ul>
+  </div>
+</ng-scrollbar>

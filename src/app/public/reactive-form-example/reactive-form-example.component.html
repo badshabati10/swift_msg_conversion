@@ -1,0 +1,148 @@
+<div class="container m-5">
+  <div class="mb-5">
+    <h2>Reactive Form Example with Validation</h2>
+  </div>
+  <div class="row" [formGroup]="exampleForm">
+    <div class="col-6">
+      <div class="m-2 row">
+        <div class="col-4">
+          <div class="text-muted fw-bold pe-5 pt-1 ">Normal(Auto Capitalization)<span class="text-danger">*</span></div>
+        </div>
+        <div class="col-8">
+          <input type="text" id="normal" appUpperCase
+                 class="form-control" [class]="classInitializer(normal)" formControlName="normal">
+          <div class="invalid-feedback" *ngIf="normal.invalid && (normal.dirty || normal.touched)">
+            <div *ngIf="normal.errors?.['required']">Value is required</div>
+            <div *ngIf="normal.errors?.['minlength']">Min length is {{normal.errors?.['minlength']?.requiredLength}}</div>
+            <div *ngIf="normal.errors?.['maxlength']">Max length is {{normal.errors?.['maxlength']?.requiredLength}}</div>
+
+          </div>
+          <!--          <div class="valid-feedback" *ngIf="normal.valid">-->
+          <!--            Looks good!-->
+          <!--          </div>-->
+        </div>
+      </div>
+      <div class="m-2 row">
+        <div class="col-4">
+          <div class="text-muted fw-bold pe-5 pt-1">Amount</div>
+        </div>
+        <div class="col-8">
+          <input type="number"
+                 class="form-control float-end text-end" formControlName="amount"
+                 [class]="classInitializer(amount)">
+          <div class="invalid-feedback"
+               *ngIf="amount.invalid && (amount.dirty || amount.touched)">
+            <div *ngIf="amount.errors?.['required']">Value is required</div>
+            <div *ngIf="amount.errors?.['min']">Minimum number is {{amount.errors?.['min']?.min}}</div>
+            <div *ngIf="amount.errors?.['max']">Maximum number is {{amount.errors?.['max']?.max}}</div>
+            <div *ngIf="amount.errors?.['numbersOnly']">Integer Number Allowed Only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="m-2 row">
+        <div class="col-4">
+          <div class="text-muted fw-bold pe-5 pt-1">English Only <span class="text-danger">*</span></div>
+        </div>
+        <div class="col-8">
+          <input type="text"
+                 class="form-control" formControlName="englishOnly"
+                 [class]="classInitializer(englishOnly)">
+          <div class="invalid-feedback"
+               *ngIf="englishOnly.invalid && (englishOnly.dirty || englishOnly.touched)">
+            <div *ngIf="englishOnly.errors?.['required']">Value is required</div>
+            <div *ngIf="englishOnly.errors?.['minlength']">Min length
+              is {{englishOnly.errors?.['minlength']?.requiredLength}}</div>
+            <div *ngIf="englishOnly.errors?.['maxlength']">Max length
+              is {{englishOnly.errors?.['maxlength']?.requiredLength}}</div>
+            <div *ngIf="englishOnly.errors?.['englishOnly']">English Characters only</div>
+          </div>
+        </div>
+      </div>
+      <div class="m-2 row">
+        <div class="col-4">
+          <div class="text-muted fw-bold pe-5 pt-1">Percentage with six digit precision
+            <!--            <span class="text-danger">*</span>-->
+          </div>
+        </div>
+        <div class="col-8">
+          <input type="text" [inputMask]="currencyInputMask"
+                 class="form-control float-end text-end" formControlName="percentageWithSixDigitPrecision"
+                 [class]="classInitializer(percentageWithSixDigitPrecision)">
+          <div class="invalid-feedback"
+               *ngIf="percentageWithSixDigitPrecision.invalid && (percentageWithSixDigitPrecision.dirty || percentageWithSixDigitPrecision.touched)">
+            <div *ngIf="percentageWithSixDigitPrecision.errors?.['precisionError']">At most after point 6 digits allowed
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="m-2 row">
+        <div class="col-4">
+          <div class="text-muted fw-bold pe-5 pt-1">Negative Integer <span class="text-danger">*</span></div>
+        </div>
+        <div class="col-8">
+          <input type="number"
+                 class="form-control float-end text-end" formControlName="negativeInteger"
+                 [class]="classInitializer(negativeInteger)" required>
+          <div class="invalid-feedback"
+               *ngIf="negativeInteger.invalid && (negativeInteger.dirty || negativeInteger.touched)">
+            <div *ngIf="negativeInteger.errors?.['required']">Value is required</div>
+            <div *ngIf="negativeInteger.errors?.['negativeInteger']">Negative value only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-5">
+    <div class="text-end">
+      <!-- BUTTON CANCEL -->
+      <button class="btn btn-danger me-2" (click)="onReset()">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          Reset<i class="ti ti-arrow-back-up fs-3 mb-1"></i>
+        </div>
+
+      </button>
+      <!-- BUTTON SAVE -->
+      <button class="btn btn-primary" (click)="onSubmit()"
+              [disabled]="(exampleForm.dirty || exampleForm.untouched) && exampleForm.invalid">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          Submit <i class="ti ti-check fs-3 mb-1"></i>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container m-5">
+  <h3> Date Picker Examples</h3>
+  <div class="row">
+    <div class="col-3">
+      <div class="text-muted fw-bold pe-5 pt-1">Date of Birth <span class="text-danger">*</span></div>
+    </div>
+    <div class="col-3">
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker1" >
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <div class="text-muted fw-bold pe-5 pt-1">Duration <span class="text-danger">*</span></div>
+    </div>
+  <div class="col-3">
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker2">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker2></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+
+
+.position-relative {
+  position: relative;
+}
+
+.icon-placeholder {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #2088d2;
+  pointer-events: none;
+}
+
+.padding{
+  padding-left: 2.5rem !important;
+}
+
+input::placeholder{
+  padding-left: 5px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #aaa;
+}
+
+
+
+.invalid-feedback {
+  display: block;
+  position: absolute;
+  bottom: -20px;
+}
+
+
+body {
+  overflow-y: hidden;
+}
+
+img {
+  max-width: 80%;
+  height: auto;
+}

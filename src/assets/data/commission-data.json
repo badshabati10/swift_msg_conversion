@@ -1,0 +1,20 @@
+[
+  {
+    "serviceId": "Credit Card",
+    "amount": 60.00,
+    "applicationId" : 954096556262,
+    "settledDate" : " 21-11-2023 18:24:17"
+  },
+  {
+    "serviceId": "AGENT_CASH_IN",
+    "amount": 1478.92,
+    "applicationId" : 223853049422,
+    "settledDate" : " 21-11-2023 18:24:17"
+  },
+  {
+    "serviceId": "LoanInstallment",
+    "amount": 6645.50,
+    "applicationId" : 587250879534,
+    "settledDate" : " 21-11-2023 18:24:17"
+  }
+]

@@ -1,0 +1,192 @@
+{
+  "BTN_SRCH" : "Search",
+  "BTN_NXT" : "Next",
+  "BTN_CNCL" : "Cancel",
+  "BTN_SBMT" : "Submit",
+  "BTN_YES" : "Yes",
+  "BTN_NO" : "No",
+  "BTN_BCK" : "Back",
+  "BTN_RST" : "Reset",
+  "BTN_PROCD" : "Proceed",
+  "BTN_UPDT" : "Update",
+  "BTN_ADD" : "Add",
+  "BTN_SAVE" : "Save",
+
+  "CUST_DETAILS" : "Customer Details",
+  "CUST_ID" : "Customer Id",
+  "MOB" : "Mobile",
+  "ACNT_TITLE" : "Account Title",
+  "EMIL" : "Email",
+  "ACNT_TYP" : "Account Type",
+  "ACNT_STAT" : "Account Status",
+  "OFFR" : "Offer",
+  "SOL_ID" : "Sol Id",
+
+  "TRANS_DTLS" : "Transaction Details",
+
+  "ER_ENG_CHAR":"English Characters Only",
+
+
+
+  "TRANS_PARTCLR" : "Transaction Particular",
+  "ER_TRANS_PARTCLR" : "Transaction Particular Required",
+
+  "TRANS_REMRKS" : "Transaction Remarks",
+  "ER_TRANS_REMRKS" : "Transaction Remarks Required",
+
+  "BENF_MOB" : "Beneficiary Mobile No",
+  "ER_BENF_MOB" : "Beneficiary Mobile Number Required",
+
+  "AMNT" : "Amount",
+  "ER_AMNT" : "Amount Required",
+  "SELECT":"Select...",
+
+
+
+  "MODULE" : "Module",
+  "ACCESS_CTRL" : "Access Control",
+  "OPERATIONS" : "Operations",
+  "CORE_CONFIG" : "Core Config",
+  "BIOME_REG" : "Biometric Registration",
+
+  "NOTICE" : "Notice",
+
+  "CHNG_PASS" : "Change Password",
+  "OLD_PASS" : "Old Password",
+  "NEW_PASS" : "New Password",
+  "CONFRM_PASS" : "Confirm Password",
+
+  "LOG_OUT" : "Logout",
+
+
+
+  "CASHDEP_AMNT" : "Deposit Amount",
+  "ER_CASHDEP_AMNT" : "Deposit Amount is required",
+  "CASHDEP_SRC_FND" : "Source Of Fund",
+  "ER_CASHDEP_SRC_FND" : "Source Of Fund is required",
+
+
+  "CASHWDR_AMNT" : "Withdrawal Amount",
+  "ER_CASHWDR_AMNT" : "Withdrawal Amount Required",
+  "CASHWDR_PURP_WDR" : "Purpose of Withdrawal",
+  "ER_CASHWDR_PURP_WDR" : "Purpose of Withdrawal is required",
+
+  "LN_INST_OP_ACNT" : "Operating Account No.",
+  "ER_LN_INST_OP_ACNT" : "Operating Account No. required",
+  "ER_LN_INST_OP_ACNT_L" : "Operating Account Number must be of 13 or 16 digits",
+
+  "LN_DIS_LNK_ACNT" : "Link Account No.",
+  "ER_LN_DIS_LNK_ACNT" : "Link Account No. is required",
+  "ER_LN_DIS_LNK_ACNT_L" : "Link Account Number must be of 13 or 16 digits",
+
+  "BNK_TRANS_TRANS_TYP" : "Transfer Type",
+  "ER_BNK_TRANS_TRANS_TYP" : "Transfer Type Rquired",
+  "BNK_TRANS_TRANS_AMNT" : "Transfer Amount",
+  "ER_BNK_TRANS_TRANS_AMNT" : "Transfer Amount Required",
+  "BNK_TRANS_PURP_PAYMNT" : "Purpose Of Payment",
+  "ER_BNK_TRANS_PURP_PAYMNT" : "Purpose Of Payment Required",
+  "BNK_TRANS_TRANS_RMRKS" : "Transaction Remarks",
+  "ER_BNK_TRANS_TRANS_RMRKS" : "Transaction Remarks Required",
+
+
+  "GEN_FAC_BENF_NM" : "Beneficiary Name",
+  "ER_GEN_FAC_BENF_NM" : "Beneficiary Name Required",
+
+
+
+
+
+
+  "RCTM" : "Reference Code Type Maintainance",
+  "RCTM_MAIN_HDER" : "RCT Maintainance",
+  "RCTM_DETAIL_HDER" : "RCT Details",
+  "RCTM_FUNC_CODE" : "Function Code",
+  "ER_RCTM_FUNC_CODE" : "Function Code Must be Selected",
+  "RCTM_REF_TYP" : "Reference Code Type",
+  "ER_RCTM_REF_TYP" : "Reference Code Type Required",
+  "RCTM_REF_TYP_DESC" : "Reference Code Type Desc",
+  "ER_RCTM_REF_TYP_DESC" : "Reference Code Type Desc Required",
+  "RCTM_NEW_REF_TYP" : "New Reference Code Type",
+  "ER_RCTM_NEW_REF_TYP" : "New Reference Code Type Required",
+  "RCTM_REF_TYP_LEN" : "Length",
+  "ER_RCTM_REF_TYP_LEN" : "Length Required",
+  "RCTM_DEP_FLG" : "Dependent Flag",
+  "RCTM_DEP_REF_TYP" : "Dependent Ref Type",
+  "ER_RCTM_DEP_REF_TYP" : "Dependent Ref Type Required",
+  "RCTM_DEP_DESC" : "Dep Ref Type Description",
+
+
+
+
+
+  "BBL00001": "External Move Money",
+  "BBL00002" : "Transaction Details",
+  "BBL00003" : "Source Account Number",
+  "BBL00004" : "Source Account Title",
+
+
+
+  "MENU_MAINT": "Menu Maintenance",
+  "MENU_SECU": "Menu Security",
+  "MENU_FUNC_CODE": "Function Code",
+  "MENU_ID":"Menu ID",
+  "MENU_DETLS": "Menu Description",
+  "MENU_LANG": "Language",
+  "MENU_LANG_CODE_DESC": "Language Code Desc",
+  "MENU_CODE_DESC": "Menu Code Desc",
+  "MENU_PERMSN": "Menu Permission",
+  "MENU_PARNT": "Menu Parent",
+  "MENU_LVL": "Menu Level",
+  "MENU_LVL2": "Level",
+  "MENU_DLT_Q": "Delete?",
+  "MENU_DLT": "Delete",
+  "MENU_UNDLT": "Undelete",
+  "MENU_PARAM_1": "Param 1(Angular Component)",
+  "MENU_PARAM_2": "Param 2(Application ID)",
+  "MENU_PARAM_3": "Param 3(Module ID)",
+  "MENU_PARAM_4": "Param 4(Backend Module)",
+  "MENU_PARAM_5": "Param 5(Option Permission)",
+  "MENU_SECU_INDIC": "Security Indication",
+  "MENU_TYP": "Menu Type",
+  "MENU_ROOT": "Root",
+  "MENU_GROUP": "Group",
+  "MENU": "Menu",
+  "MENU_ADD": "Add",
+  "MENU_AUTO_VER": "Auto Verify",
+  "MENU_MOD": "Modification",
+  "MENU_VER": "Verify",
+  "MENU_CNCL": "Cancel",
+
+  "RCM":"Reference Code Maintainance",
+  "RCM_MAINT":"RCM Maintenance",
+  "RCM_DTLS":"RCM Details",
+  "RCM_FUNC_CODE": "Function Code",
+  "RCM_REF_TYP" : "Reference Type",
+  "RCM_REF_TYP_DTLS" : "Reference Type Details",
+  "RCM_REF_CODE" : "Reference Code",
+  "RCM_REF_CODE_DTLS" : "Reference Code Details",
+  "RCM_SRT_LST_FLG" : "Short List Flg",
+  "RCM_DEP_REF_CODE" : "Dependent Reference Code",
+  "RCM_DEP_REF_CODE_DTLS" : "Dependent Reference Code Details",
+  "RCM_DLT_FLG" : "Delete Flag",
+  "RCM_LANG" : "Language",
+  "RCM_LANG_CODE_DES" : "Lang Code Description",
+  "RCM_REF_CODE_DES" : "Reference Code Description",
+
+  "MIM" : "Message ID Maintenance",
+  "MIM_DTLS" : "Message ID Details",
+  "MIM_FUNC_CODE" : "Function Code",
+  "ER_MIM_FUNC_CODE": "Function Code Required",
+  "MIM_MSG_ID": "Message ID",
+  "ER_MIM_MSG_ID": "Message ID Required",
+  "ER_MIM_MSG_ID_L2": "Message ID must contain at least 2 digits",
+  "ER_MIM_MSG_ID_L10": "Message ID cannot exceed 10 characters",
+  "MIM_MSG_ID_DES": "Message ID Description",
+  "MIM_LANG": "Language",
+  "MIM_MSG_LANG_DES": "Message Lang Description",
+  "MIM_MSG_DES": "Message Description"
+
+
+
+
+}

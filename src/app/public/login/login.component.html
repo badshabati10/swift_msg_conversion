@@ -1,0 +1,55 @@
+<section class=" pt-5">
+  <div class="container pt-5 h-50">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6 border-end ps-5">
+
+        <div class="pt-5 ">
+          <img src="assets/images/bio-logo.png"
+               class="img-fluid" alt="Phone image">
+        </div>
+
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 pt-5">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-outline mb-4 pt-1 position-relative">
+            <!-- <label class="form-label" for="form1Example13">User ID</label> -->
+            <i class="ti ti-user icon-placeholder "></i>
+            <input type="text" appUpperCase id="form1Example13" class="form-control form-control-md padding border-2"
+             formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+             placeholder="USER ID" />
+            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+              <div *ngIf="f['username'].errors['required']">Username is required</div>
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4 position-relative">
+            <!-- <label class="form-label" for="form1Example23">Password</label> -->
+            <i class="ti ti-lock icon-placeholder "></i>
+            <input type="password" id="form1Example23" class="form-control form-control-md padding border-2"
+            formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+            placeholder="PASSWORD"/>
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">Password is required</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end align-items-center mb-4">
+            <!-- Checkbox -->
+            <a routerLink="/public/forgot-password">Forgot password?</a>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-md" [disabled]="loading">Sign in</button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+
+          <!-- SESSION REQUEST PART -->
+          <!--<button class="btn btn-primary btn-lg btn-block mx-3" (click)="openDialog()">Force Sign in</button> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
+

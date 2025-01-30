@@ -1,0 +1,35 @@
+<section *ngIf="showOtpPortion">
+  <!-- BODY PART STARTS -->
+  <form [formGroup]="otpForm">
+    <!-- OTP SECTION -->
+    <div>
+      <div class="otp-field-div">
+        <ng-container formArrayName="otpFields">
+          <div *ngFor="let otpControl of otpFields.controls; let i = index">
+            <input
+              type="text"
+              class="otp-field"
+              [formControlName]="i"
+              maxlength="1"
+              #otpInput
+              (keyup)="moveCursor($event, otpInputs.toArray()[i-1], otpInputs.toArray()[i], otpInputs.toArray()[i+1])"
+            />
+          </div>
+        </ng-container>
+        <div *ngIf="remainingTime !== 0">
+          <h2 class="timer-style" *ngIf="!showTimer">00:{{remainingTime}}</h2>
+        </div>
+
+        <!-- RESEND BUTTON -->
+        <div class="d-flex justify-content-end mb-3">
+          <button title="Resend OTP" type="button" class="btn btn-outline-primary shadow shadow-sm btn-sm" (click)="onResend()" *ngIf="remainingTime == 0 && !showResendButton">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              <i class="ti ti-refresh fs-3"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </form>
+</section>

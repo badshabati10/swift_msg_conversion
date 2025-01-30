@@ -1,0 +1,55 @@
+
+.container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+  --bs-gutter-x: 0;
+}
+#operations{
+  background: #a27ee5;
+}
+
+
+#access-control{
+  background: #ef7784;
+}
+
+#core-config{
+  background: #1576bcb2;
+}
+
+#biometric{
+  background: rgba(35, 119, 49, 0.84);
+}
+
+
+.img-thumbnail{
+  height: 60px;
+  width: 60px;
+}
+
+
+body{
+  overflow: auto;
+}
+.content {
+  overflow-y: auto;
+  padding: 15px;
+  padding-top: 95px;
+  // position: fixed;
+
+}
+
+.notice-section{
+  max-height: calc(100vh - 405px);
+  overflow-y: auto;
+}
+
+.show-more-button{
+  cursor: pointer;
+  margin-left: 5px;
+  color: #a27ee5;
+}
+
+.show-less-button{
+  cursor: pointer;
+  margin-left: 5px;
+  color: #a27ee5
+}

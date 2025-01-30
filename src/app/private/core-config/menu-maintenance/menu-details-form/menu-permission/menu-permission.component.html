@@ -1,0 +1,96 @@
+<div class="col-8 ms-3">
+  <div>
+    <div class="row">
+      <div class="form-check form-check-inline col-2">
+        <input class="form-check-input border-2" type="checkbox" [(ngModel)]="hasAdd" id="hasAdd"
+               (change)="checkBoxValues()" [disabled]="fullDisabled">
+        <label class="form-check-label" for="hasAdd">
+          {{'MENU_ADD'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline col-4">
+        <input class="form-check-input border-2" type="checkbox" id="addAutoVerify" [(ngModel)]="addAutoVerify" [disabled]="!hasAdd || fullDisabled">
+        <label class="form-check-label" for="addAutoVerify">
+          {{'MENU_AUTO_VER'|translate}}
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-check form-check-inline col-2">
+        <input class="form-check-input border-2" type="checkbox" value="" id="hasDelete"
+               [(ngModel)]="hasDelete" [disabled]="fullDisabled">
+        <label class="form-check-label" for="hasDelete">
+          {{'MENU_DLT'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline col-4">
+        <input class="form-check-input border-2" type="checkbox" id="deleteAutoVerify" [(ngModel)]="deleteAutoVerify" [disabled]="!hasDelete || fullDisabled">
+        <label class="form-check-label" for="deleteAutoVerify">
+          {{'MENU_AUTO_VER'|translate}}
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-check form-check-inline col-2">
+        <input class="form-check-input border-2" type="checkbox" id="hasUndelete" [(ngModel)]="hasUndelete" [disabled]="fullDisabled">
+        <label class="form-check-label" for="hasUndelete">
+          {{'MENU_UNDLT'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline col-4">
+        <input class="form-check-input border-2" type="checkbox" id="undeleteAutoVerify"
+               [(ngModel)]="undeleteAutoVerify" [disabled]="!hasUndelete || fullDisabled">
+        <label class="form-check-label" for="undeleteAutoVerify">
+          {{'MENU_AUTO_VER'|translate}}
+        </label>
+      </div>
+    </div>
+<!---->
+    <div class="row">
+      <div class="form-check form-check-inline col-2">
+        <input class="form-check-input border-2" type="checkbox" value="" id="modification"
+               [(ngModel)]="hasModification" [disabled]="fullDisabled">
+        <label class="form-check-label" for="modification">
+          {{'MENU_MOD'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline col-4">
+        <input class="form-check-input border-2" type="checkbox" value="" id="modification-auto-verify"
+               [(ngModel)]="modificationAutoVerify" [disabled]="!hasModification || fullDisabled">
+        <label class="form-check-label" for="modification-auto-verify">
+          {{'MENU_AUTO_VER'|translate}}
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-check col-2">
+        <input class="form-check-input border-2" type="checkbox" value="" id="verify"
+               [(ngModel)]="hasVerify" [disabled]="fullDisabled">
+        <label class="form-check-label" for="verify">
+          {{'MENU_VER'|translate}}
+        </label>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class="form-check col-2">
+        <input class="form-check-input border-2" type="checkbox" value="" id="cancel"
+               [(ngModel)]="hasCancel" [disabled]="fullDisabled">
+        <label class="form-check-label" for="cancel">
+          {{'MENU_CNCL'|translate}}
+        </label>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class="form-check col-2">
+        <input class="form-check-input border-2" type="checkbox" value="" id="copy"
+               [(ngModel)]="hasCopy" [disabled]="fullDisabled">
+        <label class="form-check-label" for="cancel">
+          Copy
+        </label>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+</div>

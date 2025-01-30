@@ -1,0 +1,78 @@
+<header>
+  <nav class="px-2" style="background-color: #FFFFFF;">
+    <div class="ms-2 d-flex justify-content-between pt-3">
+
+      <div class="d-flex justify-content-center">
+        <a class="navbar-brand " href="#">
+
+          <a [routerLink]="['/']" class="b-brand">
+            <!-- ========   change your logo hear   ============ -->
+            <img src="assets/images/logo-dark.svg" alt="" class="logo logo-lg pt-1"/>
+          </a>
+
+        </a>
+
+      </div>
+
+
+      <div class="mx-5 mt-3">
+        <app-welcome-message></app-welcome-message>
+      </div>
+
+
+      <div>
+        <ul class="list-unstyled d-flex justify-content-end align-items-center">
+
+          <li>
+            <div class=" mx-2">
+              <select class="form-select form-select-sm" (change)=translateLanguageTo(selectedOpt)
+                      [(ngModel)]="selectedOpt">
+                <option *ngFor=" let opt of languageArr" [ngValue]="opt">{{ opt.name }}</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <div class="pc-h-item header-user-profile user-settings mx-2" ngbDropdown>
+
+              <div class="side-user-button">
+                <a
+                  class="arrow-none me-0 d-flex justify-content-center align-items-center"
+                  href="javascript:void(0)"
+                  ngbDropdownToggle
+                >
+                  <img
+                    src=""
+                    alt="user-image"
+                    class="profilepic user-avtar"
+                    onerror="this.src='assets/images/defaultUserProfilePicture.svg';
+                          this.alt='Default Profile' ;
+                          id='defaultProfilePic'"
+                  />
+                  <span class="mx-2">
+                    <i class="ti ti-settings"></i>
+                  </span>
+                </a>
+
+              </div>
+
+              <div ngbDropdownMenu>
+                <div class="dropdown-header">
+                  <h4> {{username}} </h4>
+                  <a class="dropdown-item button" routerLink="/private/change-password">
+                    <i class="ti ti-key"></i>
+                    <span>{{'CHNG_PASS' | translate }}</span>
+                  </a>
+                  <a (click)="onLogout()" class="dropdown-item button">
+                    <i class="ti ti-logout"></i>
+                    <span>{{'LOG_OUT' | translate }}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,13 @@
+<ag-grid-angular
+  [style]="gridSize"
+  class="ag-theme-quartz"
+  [rowData]="rowData"
+  [rowSelection]="rowSelection"
+  (selectionChanged)="onSelectionChanged($event)"
+  (rowClicked)="onRowClick($event)"
+  [columnDefs]="columnDefs"
+  [suppressDragLeaveHidesColumns]="true"
+  [suppressMovableColumns] = "true"
+  (gridReady)="onGridReady($event)"
+  [defaultColDef]="defaultColDef">
+</ag-grid-angular>

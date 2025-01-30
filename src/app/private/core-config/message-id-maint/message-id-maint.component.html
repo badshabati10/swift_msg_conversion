@@ -1,0 +1,253 @@
+<div class="mx-5 mt-5">
+    <div class="border-bottom">
+        <h1 class="text-primary fw-bold text-uppercase">{{'MIM'|translate}}</h1>
+    </div>
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="msgIdForm" [completed]="false" label="{{'MIM'| translate}}">
+            <form [formGroup]="msgIdForm">
+                <div class="d-flex flex-column m-2 me-5">
+                    <div class="pt-1 w-50 row mt-5">
+                        <label for="funcCode" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                            {{ 'MIM_FUNC_CODE' | translate }}<span class="ms-2 text-danger fs-3">*</span>
+                        </label>
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+                            <select id="funcCode" class="form-select border-2"
+                                formControlName="funcCode"
+                                (change)="onChangeFuncCode($event)"
+                                [class]="classInitializer(funcCode)"
+                                [class.is-invalid]="( funcCode.touched) && funcCode.invalid">
+                                <option selected value="I">I-Inquiry</option>
+                                <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
+                                    {{item.optionText}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <!-- MSG ID -->
+                    <div class="pt-4 w-50 row">
+                        <label for="msgId" class="form-label text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                            {{'MIM_MSG_ID'|translate}}<span class="ms-2 text-danger fs-3">*</span>
+                        </label>
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+                            <div class="d-flex flex-row">
+                                <input
+                                    type="text"
+                                    class="form-control border-2"
+                                    id="msgId"
+                                    maxlength="10"
+                                    formControlName="msgId"
+                                    (change)="onChangeMsgId()"
+                                    [class]="classInitializer(msgId)"
+                                    [class.is-invalid]="(msgId.touched) && msgId.invalid" />
+                                <!-- SEARCH BUTTON -->
+                                <button type="button" class="btn btn-outline-primary ms-5"
+
+                                    (click)="onSearch(funcCode.value,msgId.value,'msgId')"
+                                    [disabled]="funcCode.value==='A'">
+                                    <div class="d-flex align-items-center justify-content-center gap-1">
+                                        {{'BTN_SRCH' | translate}}
+                                        <i class="ti ti-search fs-3"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="d-flex flex-column error-feedback"
+                            *ngIf="msgId.invalid && (msgId.dirty || msgId.touched)">
+                                <div>
+                                    <div *ngIf="msgId.errors?.['required']">
+                                        {{ 'ER_MIM_MSG_ID' | translate }}
+                                    </div>
+                                    <div *ngIf="msgId.errors?.['minlength']">
+                                        {{ 'ER_MIM_MSG_ID_L2' | translate }}
+                                    </div>
+                                    <div *ngIf="msgId.errors?.['maxlength']">
+                                        {{ 'ER_MIM_MSG_ID_L10' | translate }}
+                                    </div>
+                                </div>
+                                <div class="mt-1" *ngIf="msgId.errors?.['englishOnly']">
+                                    {{ 'ER_ENG_CHAR' | translate }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MSG ID DESCRIPTION -->
+                    <div class="pt-4 w-50 row">
+                        <label for="msgIdDesc" class="text-muted fw-bold col-sm-6 col-md-6 col-lg-4">
+                            {{'MIM_MSG_ID_DES' | translate }}
+                        </label>
+                        <div class="col-sm-6 col-md-6 col-lg-8">
+                            {{msgIdTypeDesc?msgIdTypeDesc:'N/A'}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-4 d-flex justify-content-end">
+                <!-- RESET BUTTON -->
+                    <button type="button" mat-button class="btn btn-warning mt-5 me-2" (click)="onReset()">
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                            <i class="ti ti-refresh fs-3 mb-1"></i>
+                            {{ 'BTN_RST' | translate}}
+                        </div>
+                    </button>
+                <!-- NEXT BUTTON -->
+                    <button type="button" mat-button class="btn btn-secondary mt-5" (click)="onNext()"
+                    [disabled]="(msgIdForm.dirty || msgIdForm.untouched) && msgIdForm.invalid">
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                            {{ 'BTN_NXT' | translate}}
+                            <i class="ti ti-arrow-right fs-3"></i>
+                        </div>
+                    </button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- SECOND STEP -->
+        <mat-step [stepControl]="msgIdLangForm" [completed]="false" label="{{'MIM_DTLS'| translate}}" class="prevent-scroll">
+            <form [formGroup]="msgIdLangForm">
+
+                <div class="w-50 mt-4">
+                    <div class="row ">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <label class="form-label text-muted fw-bold">
+                                {{'MIM_FUNC_CODE'|translate}}
+                            </label>
+                        </div>
+                        <div class="col-sm-7 col-md-7 col-lg-7">
+                            <span class="fw-bold">{{ funcCode.value }}</span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <label class="form-label text-muted fw-bold">
+                                {{'MIM_MSG_ID'|translate}}
+                            </label>
+                        </div>
+                        <div class="col-sm-7 col-md-7 col-lg-7">
+                            <span class="fw-bold">{{ msgId.value }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MSG ID FIELD -->
+                <div class="row w-50 mb-4" >
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <label class="text-muted fw-bold mt-2">
+                            {{'MIM_MSG_ID' | translate }}
+                            <span class="ms-2 text-danger fs-3" *ngIf="funcCode.value === 'C'">*</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-7 col-lg-7">
+                        <input
+                            type="text"
+                            class="form-control border-2"
+                            maxlength="10"
+                            formControlName="msgIdNew"
+                            [class]="classInitializer(msgIdNew)"
+                            [class.is-invalid]="(msgIdNew.touched) && msgIdNew.invalid && funcCode.value==='C'"
+                            >
+                        <div class="error-feedback d-flex flex-column"
+                        *ngIf="msgIdNew.invalid && (msgIdNew.dirty || msgIdNew.touched) && funcCode.value==='C'">
+                           <div>
+                            <div *ngIf="msgIdNew.errors?.['required']">
+                                {{ 'ER_MIM_MSG_ID' | translate }}
+                            </div>
+                            <div  *ngIf="msgIdNew.errors?.['minlength']">
+                                {{"ER_MIM_MSG_ID_L2"|translate}}
+                            </div>
+                            <div *ngIf="msgIdNew.errors?.['maxlength']">
+                                {{"ER_MIM_MSG_ID_L10"|translate}}
+                            </div>
+                           </div>
+
+                            <div class="mt-1" *ngIf="msgIdNew.errors?.['englishOnly']">
+                                {{ 'ER_ENG_CHAR' | translate }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- LANGUAGE PORTION -->
+                <div class="mt-5">
+                    <div class="row border-bottom m-1 pb-3">
+                        <div class="col-4">
+                            <span class="fw-bold p-5">{{"MIM_LANG"|translate}}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="fw-bold">{{"MIM_MSG_LANG_DES"|translate}}</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="fw-bold">{{"MIM_MSG_DES"|translate}}</span>
+                        </div>
+                    </div>
+                    <div formArrayName="language">
+                        <div *ngFor="let mop of mopCodeDescList; let i = index">
+                            <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
+                                <div class="col-4">
+                                    <input type="hidden" formControlName="msgLang" class="form-control border-2" />
+                                    <span class="fw-bold p-5">{{ mop.msgLang }}</span>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" class="form-control border-2" formControlName="msgLangDesc" readOnly />
+                                </div>
+                                <div class="col-4">
+                                    <input
+                                        type="text"
+                                        class="form-control border-2"
+                                        formControlName="msgDesc"
+                                        [class]="classInitializer(msgDesc(i))"
+
+                                        [readOnly]="funcCode?.value === 'I'" />
+
+                                        <div class="error-feedback"
+                                        *ngIf="msgDesc(i)?.invalid && (msgDesc(i)?.dirty || msgDesc(i)?.touched)">
+                                            <div *ngIf="msgDesc(i).errors?.['englishOnly']">
+                                                {{ 'ER_ENG_CHAR' | translate }}
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LANGUAGE PORTION -->
+
+                <div class="d-flex flex-row justify-content-end mt-3">
+                    <div>
+                        <!-- CANCEL BUTTON -->
+                        <button type="button" mat-button matStepperPrevious class="btn btn-danger"
+                            (click)="clearMsgIdFormFields()">
+                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                <i class="ti ti-x fs-3 mb-1"></i>
+                                {{'BTN_CNCL'|translate}}
+                            </div>
+                        </button>
+                    </div>
+                    <div class="ms-2" >
+                        <!-- SUBMIT BUTTON -->
+                        <button
+                                type="button"
+                                mat-button
+                                class="btn btn-primary"
+                                (click)="onSubmit()"
+                                [disabled]="(msgIdLangForm.pristine || msgIdLangForm.dirty || msgIdLangForm.untouched) &&
+                                msgIdLangForm.invalid ||
+                                funcCode.value==='I'"
+                                >
+
+                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                {{'BTN_SBMT'|translate}}
+                                <i class="ti ti-check fs-3 mb-1"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+</div>

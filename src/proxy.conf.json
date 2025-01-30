@@ -1,0 +1,21 @@
+{
+  "/api": {
+    "target": "https://testabrnd.bracbank.com",
+    "secure": false,
+    "changeOrigin": true,
+    "loglevel": "debug"
+  },
+  "/biocapture": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true,
+    "loglevel": "debug"
+  },
+  "/bioverify": {
+    "target": "http://localhost:9090",
+    "secure": false,
+    "changeOrigin": true,
+    "loglevel": "debug"
+  }
+
+}

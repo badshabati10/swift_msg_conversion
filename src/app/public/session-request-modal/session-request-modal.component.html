@@ -1,0 +1,14 @@
+<form action="" class=" modal-body">
+
+    <mat-icon (click)="closeModal()" class="close-icon">close</mat-icon>
+
+    <div class=" d-flex flex-column justify-content-center align-items-center mt-1 modal-content border text-primary p-3 rounded ">
+        <h3 class="fw-bold text-muted  text-center">User Already Logged in</h3>
+        <div class="d-flex justify-content-center align-items-center">
+          <input  type="checkbox" name="checkbox1" [(ngModel)]="isChecked" (change)="onChange()">
+            <span class="p-2 text-muted ">Want to quit current session and logged in again??</span>
+        </div>
+      <hr>
+        <button class="btn btn-light rounded"  (click)="buttonClickEvent()">OK</button>
+    </div>
+</form>

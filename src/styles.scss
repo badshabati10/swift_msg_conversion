@@ -1,0 +1,137 @@
+//Support: https://codedthemes.support-hub.io/
+
+// main framework
+@import 'scss/settings/preset-variables';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+$pc-body-bg: map-get($preset-colors, 'preset-1', 'body');
+$pc-blue: map-get($preset-colors, 'preset-1', 'primary');
+$pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
+@import 'scss/settings/custom-variables';
+@import 'scss/settings/theme-variables';
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+// main framework
+@import 'scss/themes/generic';
+@import 'scss/themes/general';
+
+// Layouts
+@import 'scss/themes/layouts/layouts';
+
+// Componants
+@import 'scss/themes/components/components';
+// styles.scss
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+// pages
+@import 'scss/themes/pages/page';
+
+@import 'scss/themes/customizer';
+@import 'scss/style-preset.scss';
+
+// fonts
+@import url('scss/fonts/berry/berry-icons.css');
+/** custom font icons - berry **/
+@import 'scss/fonts/tabler-icons.min.css';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import 'ag-grid-community/styles/ag-grid.css';
+/* Quartz Theme Specific CSS */
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+//@import '@uppy/core/dist/style.min.css';
+//@import '@uppy/dashboard/dist/style.min.css';
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v142/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.mat-step-text-label {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: smaller;
+}
+
+
+
+// TAB HEADER DESIGN STARTS
+.mat-mdc-tab-group .mdc-tab--active {
+  background: #673ab7;
+  border-radius: 7px 7px 0px 0px;
+  transition: background 0.3s ease;
+}
+
+.mat-mdc-tab-group .mdc-tab--active:hover {
+  background: #412276;
+}
+
+.mat-mdc-tab-header .mdc-tab {
+  border-right: 1px solid #cccccc71;
+}
+
+.mat-mdc-tab-group .mdc-tab--active .mdc-tab__text-label {
+  color: white !important;
+}
+
+.mat-mdc-tab-group .ti-x:hover {
+  color: #e4a924;
+}
+
+.mat-mdc-tab-body-active {
+  border-top: 2px solid #673ab7;
+  padding: 20px;
+}
+
+// TAB HEADER DESIGN ENDS
+
+
+/////////////WEBCAM MODAL//////////////
+
+.modal-backdrop.fade {
+  opacity: 0;
+  z-index: 0;
+}
+
+.modal-content {
+  background-color: #ffffff;
+}
+
+/////////////WEBCAM MODAL//////////////
+
+
+////////MATERIAL MODAL/////////
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 10000;
+}
+
+////////MATERIAL MODAL/////////

@@ -1,0 +1,84 @@
+<!-- HEADER -->
+<app-header class="app-header"></app-header>
+<!-- CONTENT STARTS -->
+<div class="container-fluid  content" style="background: #EAEAF3">
+
+  <div class="d-flex card border-bottom mb-2">
+   
+        <div class="shadow-none rounded-3">
+          <div class="pt-2 ps-3 border-bottom">
+            <h4 class="text-primary fw-bold text-uppercase">
+              {{ 'MODULE' | translate | uppercase }}
+            </h4>
+          </div>
+          <div class="p-2">
+            <div class="row">
+
+              <div *ngIf="hasBiome" class="col-lg-1 col-md-2 col-sm-12">
+                <a class="button" (click)="routing('/private/biome-reg')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/bio-reg.svg" alt="Biometric Registration"
+                         id="biometric" class="img-thumbnail shadow shadow-sm mb-2"/>
+                    <span class="text-center h6 text-muted text-break">{{ 'BIOME_REG' | translate }}</span>
+                  </div>
+                </a>
+              </div>
+              <div *ngIf="hasCoreConfig" class="col-lg-1 col-md-2 col-sm-12">
+                <a class="button" (click)="routing('/private/core-config')">
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="assets/images/core-configuration.svg" alt="core-config"
+                         id="core-config" class="img-thumbnail shadow shadow-sm mb-2"/>
+                    <span class="text-center h6 text-muted">{{ 'CORE_CONFIG' | translate }}</span>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      
+    
+  </div>
+
+  <!-- NOTICE BOARD STARTS -->
+      <div class="bg-white shadow-none rounded-3">
+        <div class="pt-2 ps-3 border-bottom">
+          <h4 class="text-primary fw-bold text-uppercase">
+            {{ 'NOTICE' | translate }}
+          </h4>
+        </div>
+        <div class="notice-section">
+          <!--NOTICE CARDS START -->
+          <div class="card" *ngFor="let notice of notices ;let i = index">
+            <div class="border-bottom"><h5 class="ps-3 pt-2 fs-5">{{ notice.header }}</h5></div>
+            <div class="ps-3 py-2">
+<!---->
+              <div *ngIf="notice.message.length<maxLength">
+                <span>{{ notice.message }}</span>
+              </div>
+<!---->
+              <div *ngIf="notice.message.length>maxLength">
+                <span>{{ isExpanded[i] ? notice.message : notice.message.substring(0, maxLength) + '...' }}</span>
+                <span (click)="toggleText(i)" class="show-less-button"
+                      *ngIf="notice.message.length > maxLength && !isExpanded[i]">
+                  Show more
+                </span>
+                <span (click)="toggleText(i)" class="show-more-button" *ngIf="isExpanded[i]">
+                  Show less
+                </span>
+<!---->
+              </div>
+<!---->
+            </div>
+          </div>
+<!---->
+        </div>
+      </div>
+   
+  
+</div>
+
+<!-- FOOTER STARTS -->
+
+<app-footer></app-footer>
+

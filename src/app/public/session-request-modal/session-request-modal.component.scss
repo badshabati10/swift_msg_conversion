@@ -1,0 +1,27 @@
+.close-icon{
+    position: relative;
+    left: 310px;
+    top: 5px;
+    color: rgb(79, 78, 78);
+}
+.close-icon:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px .5px .2px #969695;
+    border-radius: 5px;
+    color: #ffffff;
+
+}
+.modal-body{
+    
+    background-color: #0072bc;
+    
+
+}
+.modal-content{
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+}
+
+.btn-light:hover{
+    background-color: #0072bc;
+    color:white;
+}

@@ -1,0 +1,54 @@
+
+<app-nrx-popup-grid (selectedValue)="onSelectedRow($event)"></app-nrx-popup-grid>
+
+<div class="row">
+
+  <!-- LABEL -->
+  <label [ngClass]="layout === 'horizontal' ? 'col-' + labelRatio : ''" class="form-label fw-bold mb-0">
+    {{ title | translate }}<span class="ms-2 text-danger fs-3" *ngIf="required">*</span>
+  </label>
+
+  <!-- INPUT FIELD -->
+  <div [ngClass]="layout === 'horizontal' ? 'col-' + inputFieldRatio : ''">
+
+    <div class="d-flex flex-column">
+      <div class="d-flex align-items-start">
+        <input
+          type="text"
+          class="form-control border-2"
+          (keyup)="onChangeInputFieldWithDesc()"
+          [formControl]="control"
+          [maxlength]="maxLength"
+          [required]="required"
+          [class]="classInitializer(control)"
+          [class.is-invalid]="(control.touched) && control.invalid && required"
+        />
+
+        <!-- SEARCH BUTTON -->
+        <button
+          class="btn btn-primary btn-sm d-flex justify-content-center align-items-center ms-2 p-2"
+          (click)="onSearch()"
+          [disabled]="searcherDisable"
+        >
+          <i class="ti ti-search fs-3"></i>
+        </button>
+      </div>
+
+      <!-- ERROR MESSAGE -->
+      <div *ngIf="control?.invalid && (control?.dirty || control?.touched) && required" class="invalid-feedback d-flex flex-column">
+        <div *ngIf="control?.errors?.['required']">
+          {{ title | translate }} {{'REQUIRED' | translate }}
+        </div>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div>
+        <label>
+          <small>{{ description }}</small>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+</div>

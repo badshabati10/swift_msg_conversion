@@ -1,0 +1,16 @@
+<div class="m-5">
+  <div class="border-bottom">
+    <h1 class="text-primary fw-bold">{{'MENU_MAINT' | translate | uppercase}}</h1>
+  </div>
+
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [completed]="false" label="{{'MENU_MAINT' | translate}}">
+      <app-menu-search-form (onNextButtonEmit)="menuDetails($event)"></app-menu-search-form>
+    </mat-step>
+    <mat-step label="{{'MENU_DETLS' | translate}}" [completed]="false">
+      <app-menu-details-form menuDetails (onCancelEvent)="onCancelEvent()"></app-menu-details-form>
+    </mat-step>
+  </mat-stepper>
+
+
+</div>

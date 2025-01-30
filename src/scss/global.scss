@@ -1,0 +1,90 @@
+
+.glass-back{
+  background-color: #fafafa;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+  padding: 0px 40px;
+  margin: 30px;
+  width: auto 100%;
+  border-radius:20px;
+
+}
+.right-input{
+text-align: right;
+}
+.error-feedback{
+color: red;
+}
+
+.button:hover{
+cursor: pointer;
+}
+
+////////////PASSWORD VISIBILITY STARTS////////////
+::-ms-reveal {
+display: none;
+}
+
+mat-form-field {
+width: 100%;
+
+}
+
+.mat-mdc-form-field-infix {
+min-height: 15px;
+}
+.mat-mdc-form-field-icon-prefix, .mat-mdc-form-field-icon-suffix {
+align-self: baseline;
+}
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+padding-top: 10px;
+padding-bottom: 0px;
+}
+.password-visibility-container{
+position: relative;
+}
+
+.password-toggle {
+cursor: pointer;
+position: absolute;
+right: 10px;
+top: 50%;
+width: 20px;
+height: 20px;
+}
+
+.ti-eye{
+color: grey;
+}
+
+.ti-eye:hover{
+color: #2196f3;
+
+}
+
+.ti-eye:active{
+color: #a6c5de;
+}
+
+.mat-expansion-panel{
+box-shadow: none !important;
+}
+
+///////////////PASSWORD VISIBILITY ENDS/////////////////
+
+
+
+//////////////STEPPER CHECK ICON STYLE STARTS//////////////////
+
+.check-icon-style {
+background-color: green;
+display: inline-flex; 
+align-items: center;
+justify-content: center; 
+width: 24px; 
+height: 24px;
+border-radius: 50%;
+}
+
+//////////////STEPPER CHECK ICON STYLE ENDS////////////////// 
+
+

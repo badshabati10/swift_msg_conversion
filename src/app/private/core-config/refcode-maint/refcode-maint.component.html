@@ -1,0 +1,300 @@
+<div class="mx-5 mt-5">
+  <div class="border-bottom">
+    <h1 class="text-primary fw-bold">{{'RCM'|translate|uppercase}}</h1>
+  </div>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="refCodeForm" [completed]="false" label="{{'RCM_MAINT'|translate}}">
+      <form [formGroup]="refCodeForm">
+        <div class="d-flex flex-column">
+          <!-- FUNC CODE -->
+          <div class="pt-1 row w-50 mt-5">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="funcCode" class="form-label text-muted fw-bold">
+                {{ 'RCM_FUNC_CODE' | translate }} <span class="ms-2 text-danger fs-3">*</span>
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <select id="funcCode" class="form-select border-2"
+                [class]="classInitializer(funcCode)" [class.is-invalid]="(funcCode.touched) && funcCode.invalid"
+                formControlName="funcCode" (change)="onChangeFuncCode($event)" >
+               <option selected value="I">I-Inquiry</option>
+                <option *ngFor="let item of funcCodeOptions" [value]="item.optionValue">
+                  {{item.optionText}}
+
+              </select>
+              <div class="invalid-feedback" *ngIf="funcCode.invalid && (funcCode.dirty || funcCode.touched)">
+                <div *ngIf="funcCode.errors['required']">Function Code is required</div>
+              </div>
+
+            </div>
+
+          </div>
+          <!-- REF TYPE -->
+          <div class="pt-4 w-50 row">
+            <div class="col-5">
+              <label for="refCodeType" class="form-label text-muted fw-bold">
+                {{ 'RCM_REF_TYP' | translate }} <span class="ms-2 text-danger fs-3">*</span>
+              </label>
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control border-2" id="refCodeType" formControlName="refCodeType"
+              (change)="onChangeRefCode()"
+                [class]="classInitializer(refCodeType)" />
+              <div class="invalid-feedback" *ngIf="refCodeType.invalid && (refCodeType.dirty || refCodeType.touched)">
+                <div *ngIf="refCodeType.errors?.['required']">Value is required</div>
+                <div *ngIf="refCodeType.errors?.['englishOnly']">English Characters only</div>
+              </div>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-outline-primary ms-5"
+                (click)="onSrchRefType('I', refCodeType.value)">
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                  {{ 'BTN_SRCH' | translate }}
+                  <i class="ti ti-search fs-3"></i>
+                </div>
+              </button>
+            </div>
+          </div>
+
+
+          <!-- REF TYPE DETAILS -->
+          <div class="pt-4 w-50 row">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCodeType" class="form-label text-muted fw-bold">
+                {{ 'RCM_REF_TYP_DTLS' | translate }}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <label class="form-label">{{ refTypeDesc ? refTypeDesc : 'N/A' }}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row w-50 pt-4">
+            <div class="col-5">
+              <label for="refCode" class="form-label text-muted fw-bold">
+                {{ 'RCM_REF_CODE' | translate }} <span class="ms-2 text-danger fs-3">*</span>
+              </label>
+            </div>
+            <div class="col-5">
+              <input type="text" id="refCode" class="form-control border-2"
+                [class]="classInitializer(refCode)" formControlName="refCode" />
+              <div class="invalid-feedback" *ngIf="refCode.invalid && (refCode.dirty || refCode.touched)">
+                <div *ngIf="refCode.errors?.['required']">Value is required</div>
+                <div *ngIf="refCode.errors?.['englishOnly']">English Characters only</div>
+              </div>
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-outline-primary ms-5" [disabled]=isHiddenRefCodeSrchBtn
+                (click)="onSrchRefCode(funcCode.value, refCodeType.value, refCode.value)">
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                  {{ 'BTN_SRCH' | translate }}
+                  <i class="ti ti-search fs-3"></i>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- REF CODE DETAILS -->
+          <div class="pt-4 row w-50">
+            <div class="col-sm-5 col-md-5 col-lg-5">
+              <label for="refCode" class="form-label text-muted fw-bold">
+                {{ 'RCM_REF_CODE_DTLS' | translate }}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <div class="d-flex flex-row">
+                <label class="form-label">{{ refCodeDesc ? refCodeDesc : 'N/A' }} </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEXT BUTTON -->
+          <div class="d-flex justify-content-end">
+            <button type="button" mat-button class="btn btn-warning mt-5 me-2" (click)="onReset()">
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <i class="ti ti-refresh fs-3 mb-1"></i>
+                {{ 'BTN_RST' | translate}}
+              </div>
+            </button>
+            <button type="button" mat-button matStepperNext class="btn btn-secondary mt-5 me-2"
+              [disabled]="refCodeForm.invalid" (click)="onNext()">
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                {{ 'BTN_NXT' | translate }}&nbsp;<span class="ti ti-arrow-right"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- SECOND STEP -->
+    <mat-step [stepControl]="refCodeDetailForm" [completed]="false" label="{{ 'RCM_DTLS' | translate }}">
+      <form [formGroup]="refCodeDetailForm">
+        <div class="w-50 mt-4">
+          <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <label class="form-label text-muted fw-bold">
+                {{ 'RCM_FUNC_CODE' | translate }}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <span class="fw-bold">{{ funcCode.value }}</span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <label class="form-label text-muted fw-bold">
+                {{ 'RCM_REF_CODE' | translate }}
+              </label>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7">
+              <span class="fw-bold">{{ refCode.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- SHORT LIST FLG -->
+        <div class="pt-1 row mt-3 w-50">
+          <label for="shortListFlg" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{ 'RCM_SRT_LST_FLG' | translate }} <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <select id="shortListFlg" class="form-select border-2"
+              formControlName="shortListFlg">
+                        <option value="Y">Y-Yes</option>
+              <option value="N">N-No</option>
+            </select>
+          </div>
+        </div>
+        <!--Dep Ref Code-->
+        <div class="pt-4 w-50 row">
+          <div class="col-5">
+            <label for="depRefCode" class="form-label text-muted fw-bold">
+              {{ 'RCM_DEP_REF_CODE' | translate }}<span class="ms-2 text-danger fs-3" *ngIf="depFlg === 'Y'">*</span>
+            </label>
+          </div>
+          <div class="col-5">
+            <input type="text" class="form-control border-2" id="depRefCode" formControlName="depRefCode"
+              [class]="classInitializer(depRefCode)" [readOnly]="funcCode?.value === 'I' || this.depFlg!=='Y'"
+            />
+            <div class="invalid-feedback" *ngIf="depRefCode.invalid && (depRefCode.dirty || depRefCode.touched)">
+              <div *ngIf="depRefCode.errors?.['required']">Value is required</div>
+              <div *ngIf="depRefCode.errors?.['englishOnly']">English Characters only</div>
+            </div>
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-outline-primary ms-5" [disabled]=!isHiddenDefRefCode
+              (click)="onSrchdepRefCode('I', depRefCodeType, depRefCode.value)" >
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                {{ 'BTN_SRCH' | translate }}
+                <i class="ti ti-search fs-3"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!--Dep Ref Code-->
+
+        <div class="pt-4 row w-50" *ngIf="depFlg === 'Y'">
+          <label for="depRefCode" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{ 'RCM_DEP_REF_CODE_DTLS' | translate }}
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <label class="form-label ">{{ depRefCodeDesc ?  depRefCodeDesc :'N/A' }}</label>
+          </div>
+        </div>
+
+        <div class="w-50 row mt-3">
+          <label for="delFlg" class="form-label text-muted fw-bold col-sm-5 col-md-5 col-lg-5">
+            {{ 'RCM_DLT_FLG' | translate }} <span class="ms-2 text-danger fs-3">*</span>
+          </label>
+          <div class="col-sm-7 col-md-7 col-lg-7">
+            <select id="delFlg" class="form-select border-2"
+              formControlName="shortListFlg">
+              <option value="Y">Y-Yes</option>
+              <option value="N">N-No</option>
+            </select>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="mt-5">
+          <div class="row border-bottom m-1 pb-3">
+            <div class="col-4">
+              <span class="fw-bold p-5">
+                {{ 'RCM_LANG' | translate }}
+              </span>
+            </div>
+            <div class="col-4">
+              <span class="fw-bold">
+                {{ 'RCM_LANG_CODE_DES' | translate }}
+              </span>
+
+            </div>
+            <div class="col-4">
+              <span class="fw-bold">
+                {{ 'RCM_REF_CODE_DES' | translate }}
+              </span>
+              <span class="ms-2 text-danger fs-3">*</span>
+
+            </div>
+          </div>
+          <div formArrayName="language">
+            <div *ngFor="let mop of mopCodeDescList; let i = index">
+              <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
+                <div class="col-4">
+                  <input type="hidden" formControlName="refCodeLang" class="form-control border-2" />
+                  <span class="fw-bold p-5">{{ mop.refCodeLang }}</span>
+                </div>
+                <div class="col-4">
+                  <input type="text" class="form-control border-2" formControlName="refCodeLangDesc"
+                    readOnly />
+                </div>
+                <div class="col-4">
+                  <input type="text" class="form-control border-2" formControlName="refCodeDesc"
+                  [class]="classInitializer(menuDesc(i))"
+                  [ngClass]="{ 'is-invalid': menuDesc(i)?.invalid && (menuDesc(i)?.dirty || menuDesc(i)?.touched) }"
+                    [readOnly]="funcCode?.value === 'I'" />
+                    <div class="invalid-feedback" *ngIf="menuDesc(i)?.invalid && (menuDesc(i)?.dirty || menuDesc(i)?.touched)">
+                      <div *ngIf="menuDesc(i)?.errors">English Characters only</div>
+                      <!-- Add custom validation messages here -->
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUTTON CANCEL & SUBMIT -->
+        <div class="text-end mt-3 d-flex justify-content-end">
+          <div>
+            <button type="button" mat-button matStepperPrevious class="btn btn-danger"
+              (click)="clearRefCodeFormFields()">
+              <div class="d-flex align-items-center justify-content-center gap-1">
+                <i class="ti ti-x fs-3 mb-1"></i>
+                {{ 'BTN_CNCL' | translate }}
+              </div>
+            </button>
+          </div>
+
+          <ng-template [ngIf]="!isInquirySelected()">
+            <div class="ms-2">
+              <button type="button" class="btn btn-primary" (click)="onSubmit()"
+              [disabled]="((refCodeDetailForm.dirty || refCodeDetailForm.untouched) && refCodeDetailForm.invalid) || funcCode?.value === 'I'">
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                  {{ 'BTN_SBMT' | translate }}
+                  <i class="ti ti-check fs-3 mb-1"></i>
+                </div>
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

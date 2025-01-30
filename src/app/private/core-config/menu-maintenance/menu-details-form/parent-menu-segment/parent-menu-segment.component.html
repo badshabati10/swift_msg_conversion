@@ -1,0 +1,75 @@
+<div class="row mb-2">
+  <div class="col-2">
+    <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PERMSN' | translate }}</div>
+  </div>
+  <div class="col-10">
+    <app-nrx-grid [columnDefs]="mopParemListcolumnDefs" [rowData]="mopPermList"
+                  [suppressRowSelection]="false" (onRowClickEvent)="onRowClick($event)">
+    </app-nrx-grid>
+  </div>
+</div>
+<form [formGroup]="parentMenuForm" autocomplete="off"
+      *ngIf="menuInit.funcCode == 'A' || menuInit.funcCode == 'M' || menuInit.funcCode == 'C'">
+  <div class="row pb-3">
+    <div class="col-2 text-start">
+      <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_PARNT'|translate}}</div>
+    </div>
+    <div class="col-6 text-start">
+      <input type="text" class="form-control border-2" formControlName="parMenuCode"
+             id="parMenuCode"/>
+
+      <input type="hidden" class="form-control border-2" formControlName="parMenuCodeDesc"
+             id="parMenuCodeDesc"/>
+    </div>
+    <div class="col-4 text-start">
+      <!-- BUTTON SEARCH -->
+      <button class="btn btn-outline-primary" (click)="onSearchParentMenuId()" [disabled]=isDisabled>
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          {{'BTN_SRCH' | translate}}
+          <i class="ti ti-search fs-3 mb-1"></i>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col-2 text-start">
+      <div class="text-muted fw-bold pe-5 pt-1">
+        {{'MENU_LVL2'|translate}}
+      </div>
+    </div>
+    <div class="col-4 text-start">
+      <input type="text" class="form-control border-2" formControlName="levelCode" id="level"/>
+      <input type="hidden" class="form-control border-2" formControlName="entityCreFlg" id="entityCreFlg"/>
+      <input type="hidden" class="form-control border-2" formControlName="lchgTime" id="lchgTime"/>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col-2 text-start">
+      <div class="text-muted fw-bold pe-5 pt-1">{{'MENU_DLT_Q'|translate}}</div>
+    </div>
+    <div class="col-6 text-start">
+      <input class="form-check-input border-2" type="checkbox" value="Y" id="delFlag"
+             formControlName="delFlg">
+
+    </div>
+    <div class="col-4 text-start">
+      <!-- BUTTON UPDATE -->
+      <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('update')"
+              *ngIf="isUpdate; else add">
+        <div class="d-flex align-items-center justify-content-center gap-1">
+          {{'BTN_UPDT'|translate}}
+          <i class="ti ti-edit fs-3 mb-1"></i>
+        </div>
+      </button>
+      <ng-template #add>
+        <!-- BUTTON ADD -->
+        <button class="btn btn-outline-success text-start" (click)="addOnParentGrid('add')">
+          <div class="d-flex align-items-center justify-content-center gap-1">
+            {{'BTN_ADD'|translate}}
+            <i class="ti ti-plus fs-3 mb-1"></i>
+          </div>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</form>

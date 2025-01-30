@@ -1,0 +1,75 @@
+.me-0 {
+    margin: 4px 0 0 4px !important;
+  }
+  .profilepic{
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    padding: 5px;
+    margin-top: 1px;
+  }
+  .user-settings{
+ 
+    background-color: rgb(211 234 253);
+    border-radius: 25px;
+    height: 48px;
+    transition: transform .5s ease-in;
+     
+  }
+  .user-settings:hover{
+    transform: scale(1.03);
+    background-color: rgb(33 150 243);
+    .ti-settings{
+      color: white;
+    }
+  }
+  
+  .ti-settings{
+    font-size: 21px;
+    padding-right: 6px;
+  
+  }
+  
+  .button:hover{
+    cursor: pointer;
+    background-color: rgb(33 150 243);
+    color: white;
+    border-radius: 10px;
+  }
+  
+  #defaultProfilePic{
+    height: 50px;
+    width: 50px;
+    margin-top: 2px;
+  }
+  
+  header{
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+  }
+
+  .languageSelect{
+    width: 90px;
+  }
+
+  @media only screen and (max-width:600px){
+    .languageSelect{
+      width: 90px;
+      margin-left: -180px;
+
+    }
+    .side-user-button{
+      margin-left: -100px;
+      background-color: rgb(211 234 253);
+      border-radius: 27px;
+      height: 48px;
+      width: 94.4px;
+    }
+    .side-user-button:hover{
+      background-color: rgb(33 150 243);
+       .ti-settings{
+           color: white;
+       }
+    }
+  }

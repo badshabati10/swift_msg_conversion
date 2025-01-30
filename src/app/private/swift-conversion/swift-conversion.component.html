@@ -1,0 +1,97 @@
+<div class="mt-5 row">
+    <div class="col-6 form-outline mb-4">
+        <label class="form-label fw-bold mb-0">
+          Swift I/O<span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <select class="form-select border-2" formControlName="swiftIO">
+          <option value="OUTGOING" selected>Outgoing</option>
+          <option value="INCOMING">Incoming</option>
+        </select>
+      </div>
+
+      <div class="col-6 form-outline w-50">
+        <label class="form-label fw-bold mb-0">
+          Message Type<span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <select class="form-select border-2" formControlName="swiftIO">
+          <option value="103" selected>MT103</option>
+          <option value="202">MT202</option>
+        </select>
+      </div>
+
+</div>
+
+<div class="mt-5 row">
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label fw-bold mb-0">
+       Receiver<span class="ms-2 text-danger fs-3">*</span>
+      </label>
+      <input matInput  formControlName="Receiver">
+    </div>
+    <div class="col-6 form-outline mb-4">
+        <label class="form-label fw-bold mb-0">
+         Sender<span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <input matInput  formControlName="Sender">
+      </div>
+</div>
+
+<div class="mt-5 row">
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label fw-bold mb-0">
+       Search Text<span class="ms-2 text-danger fs-3">*</span>
+      </label>
+      <input matInput  formControlName="SEarchText">
+    </div>
+    <div class="col-6 form-outline mb-4">
+        <label class="form-label fw-bold mb-0">
+         Reference<span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <input matInput  formControlName="Reference">
+      </div>
+</div>
+
+<div class="mt-5 row">
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label fw-bold mb-0">
+       From Date<span class="ms-2 text-danger fs-3">*</span>
+      </label>
+      <input matInput formControlName="formDate" maxlength="10" placeholder="DD / MM / YYYY">
+    </div>
+    <div class="col-6 form-outline mb-4">
+        <label class="form-label fw-bold mb-0">
+         To Date<span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <input matInput formControlName="toDate" maxlength="10" placeholder="DD / MM / YYYY">
+      </div>
+</div>
+
+<div class="mt-5 row">
+    <div class="col-6 form-outline mb-4">
+      <label class="form-label fw-bold mb-0">
+      MUR:<span class="ms-2 text-danger fs-3">*</span>
+      </label>
+      <input matInput  formControlName="Receiver">
+    </div>
+    <div class="col-6 form-outline mb-4">
+        <button type="button" class="btn btn-primary">Primary</button>
+      </div>
+</div>
+
+<div class="mt-5 row">
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+              <th>messageType</th>
+              <th>reference</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let msg  of imsgItems">
+              <td>{{msg.messageType}}</td>
+              <td>{{msg.reference}}</td>
+            </tr>
+        </tbody>
+       </table> 
+</div>
+

@@ -1,0 +1,207 @@
+<form [formGroup]="menuDetailsForm" autocomplete="off">
+  <div class="mt-5">
+    <div class="row mb-2">
+      <div class="col-2 text-muted fw-bold">
+        {{'MENU_FUNC_CODE' | translate}}
+      </div>
+      <div class="col-6 fw-bold">
+        {{funcCodeDetails}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 text-muted fw-bold">
+        {{'MENU_ID' | translate}}
+      </div>
+      <div class="col-6 fw-bold">
+        {{menuInit.menuId}}
+      </div>
+    </div>
+    <div class="mt-5">
+      <div class="row border-bottom m-1 pb-3">
+        <div class="col-4">
+          <span class="fw-bold p-5">{{'MENU_LANG' | translate}}</span>
+        </div>
+        <div class="col-4">
+          <span class="fw-bold">{{'MENU_LANG_CODE_DESC' | translate}}</span>
+        </div>
+        <div class="col-4">
+          <span class="fw-bold">{{'MENU_CODE_DESC' | translate}}</span>
+        </div>
+      </div>
+      <div formArrayName="languageDetails">
+        <div *ngFor="let mop of mopCodeDescList; let i= index">
+          <div class="row m-1 pb-2 pt-2" [formGroupName]="i">
+            <div class="col-4">
+              <input type="hidden" formControlName="langCode" class="form-control border-2">
+              <input type="hidden" formControlName="delFlg" class="form-control border-2">
+              <input type="hidden" formControlName="lchgTime" class="form-control">
+              <span class="fw-bold p-5">{{mop?.langCode}}</span>
+            </div>
+            <div class="col-4">
+              <span class="fw-bold">{{mop?.langCodeDesc}}</span>
+              <input type="hidden" class="form-control border-2" formControlName="langCodeDesc">
+            </div>
+            <div class="col-4">
+              <input type="text" class="form-control border-2" [class]="classInitializer(menuDesc(i))"
+                     formControlName="menuDesc" [readOnly]="menuInit.funcCode !== 'A' && menuInit.funcCode !== 'M' && menuInit.funcCode !== 'C'">
+              <div class="invalid-feedback" *ngIf="menuDesc(i)?.invalid && (menuDesc(i)?.dirty || menuDesc(i)?.touched)">
+                <div *ngIf="menuDesc(i)?.errors">English Characters only</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 col-12">
+            <span class="form-label text-muted fw-bold pe-5">
+              {{'MENU_TYP' | translate}}
+            </span>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input border-2" type="radio" name="menuTp" id="root" value="R" checked
+               formControlName="menuTp" (change)="onMenuTypeChange($event)">
+        <label class="form-check-label" for="root">
+          {{'MENU_ROOT'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input border-2" type="radio" name="menuTp" id="group" value="G"
+               formControlName="menuTp" (change)="onMenuTypeChange($event)">
+        <label class="form-check-label" for="group">
+          {{'MENU_GROUP'|translate}}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input border-2" type="radio" name="menuTp" id="menu" value="M"
+               formControlName="menuTp" (change)="onMenuTypeChange($event)">
+        <label class="form-check-label" for="menu">
+          {{'MENU'|translate}}
+        </label>
+      </div>
+    </div>
+    <div class="mt-5" *ngIf="menuType==='G' || menuType==='M';">
+      <app-parent-menu-segment [mopPermMrh]="mopPermMrh" [menuInit]="menuInit"></app-parent-menu-segment>
+    </div>
+    <div class="mt-5 row"  *ngIf="menuType === 'M'">
+      <div class="d-flex col-2">
+              <span class="form-label text-muted fw-bold pe-5">
+                {{'MENU_SECU' | translate }}
+              </span>
+      </div>
+      <app-menu-permission [param5]="param5" [fullDisabled]="fullDisabledMenuPermissions"></app-menu-permission>
+    </div>
+    <div class="mt-5">
+      <div class="pt-1 w-50 row mt-5" *ngIf="menuType==='M'">
+
+        <label for="secuInd" class="form-label text-muted col-6 ms-1 fw-bold">
+          {{'MENU_SECU_INDIC' | translate}} <span class="ms-2 text-danger fs-3">*</span>
+        </label>
+        <div class="col-5">
+          <select id="secuInd" class="form-select border-2" formControlName="secuInd">
+            <option value="I">I-Inquiry</option>
+            <option value="M">M-Modification</option>
+          </select>
+        </div>
+      </div>
+      <div class="row pt-5" *ngIf="menuType==='M'">
+        <div class="col-3 text-start">
+          <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_1' | translate}}<span class="ms-2 text-danger fs-3">*</span></div>
+        </div>
+        <div class="col-9 text-start">
+          <input type="text" class="form-control w-50 border-2" formControlName="param1"
+                 [class]="classInitializer(menuDetailsForm.get('param1'))"
+          >
+          <div class="invalid-feedback" *ngIf="param1.invalid && (param1.dirty || param1.touched)">
+            <div *ngIf="param1.errors?.['required']">Value is required</div>
+            <div *ngIf="param1.errors?.['englishOnly']">English Characters only</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-5" *ngIf="menuType==='R'">
+        <div class="col-4 text-start">
+          <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_2' | translate}} <span class="ms-2 text-danger fs-3">*</span></div>
+
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control border-2" formControlName="param2"
+                 [class]="classInitializer(menuDetailsForm.get('param2'))"
+          >
+          <div class="invalid-feedback" *ngIf="param2.invalid && (param2.dirty || param2.touched)">
+            <div *ngIf="param2.errors?.['required']">Value is required</div>
+            <div *ngIf="param2.errors?.['englishOnly']">English Characters only</div>
+          </div>
+        </div>
+
+        <!--  -->
+
+        <div class="col-4 text-start">
+          <!-- BUTTON SEARCH -->
+          <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchAppId()"
+                  [disabled]="menuInit.funcCode!=='A' && menuInit.funcCode!=='M' && menuInit.funcCode!=='C'">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{'BTN_SRCH' | translate}}
+              <i class="ti ti-search fs-3 mb-1"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="row pt-5" *ngIf="menuType==='M'">
+        <div class="col-3 text-start">
+          <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_3' | translate}} <span class="ms-2 text-danger fs-3">*</span></div>
+        </div>
+        <div class="col-4">
+          <input type="text" class="form-control border-2" formControlName="param3"
+                 [class]="classInitializer(menuDetailsForm.get('param3'))"
+          >
+          <div class="invalid-feedback" *ngIf="param3.invalid && (param3.dirty || param3.touched)">
+            <div *ngIf="param3.errors?.['required']">Value is required</div>
+            <div *ngIf="param3.errors?.['englishOnly']">English Characters only</div>
+          </div>
+        </div>
+
+        <div class="col-4 text-start">
+          <!-- BUTTON SEARCH -->
+          <button type="button" class="btn btn-outline-primary ms-5" (click)="onSearchModuleId()"
+                  [disabled]="menuInit.funcCode!=='A' && menuInit.funcCode!=='M' && menuInit.funcCode!=='C'">
+            <div class="d-flex align-items-center justify-content-center gap-1">
+              {{'BTN_SRCH' | translate}}
+              <i class="ti ti-search fs-3 mb-1"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="row pt-5" *ngIf="menuType==='M'">
+        <div class="col-3 text-start">
+          <div class="text-muted fw-bold pe-5 pt-1">{{ 'MENU_PARAM_4' | translate}} <span class="ms-2 text-danger fs-3">*</span></div>
+        </div>
+        <div class="col-9 text-start">
+          <input type="text" class="form-control w-50 border-2" formControlName="param4"
+                 [class]="classInitializer(menuDetailsForm.get('param4'))"
+          >
+          <div class="invalid-feedback" *ngIf="param4.invalid && (param4.dirty || param4.touched)">
+            <div *ngIf="param4.errors?.['required']">Value is required</div>
+            <div *ngIf="param4.errors?.['englishOnly']">English Characters only</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-end">
+    <!-- BUTTON CANCEL -->
+    <button class="btn btn-danger me-2" (click)="onCancel()">
+      <div class="d-flex align-items-center justify-content-center gap-1">
+        <i class="ti ti-x fs-3 mb-1"></i>
+        {{'BTN_CNCL'|translate}}
+      </div>
+
+    </button>
+    <!-- BUTTON SAVE -->
+    <button class="btn btn-primary" (click)="onSave()" [disabled]="menuInit.funcCode === 'I'">
+      <div class="d-flex align-items-center justify-content-center gap-1">
+        {{'BTN_SAVE'|translate}}
+        <i class="ti ti-check fs-3 mb-1"></i>
+      </div>
+    </button>
+  </div>
+</form>
